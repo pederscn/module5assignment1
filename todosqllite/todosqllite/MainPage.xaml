@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="todosqllite.MainPage"
+             BackgroundColor="#e9e9e9">
+
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+
+            <!-- Header with Title and Add Button -->
+            <StackLayout Orientation="Horizontal"
+                         BackgroundColor="#77d065"
+                         HeightRequest="60"
+                         Padding="10"
+                         HorizontalOptions="FillAndExpand">
+                <Label Text="Todo"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"
+                       HorizontalOptions="StartAndExpand"/>
+                <Button Text="+"
+                        TextColor="White"
+                        BackgroundColor="#77d065"
+                        VerticalOptions="Center"
+                        Clicked="OnAddClicked"/>
+            </StackLayout>
+
+            <!-- ListView to display Todo Items -->
+<ListView x:Name="TodoItemsListView"
+          SeparatorVisibility="None"
+          BackgroundColor="White"
+          HeightRequest="500"
+          ItemSelected="OnItemSelected">
+    <ListView.ItemTemplate>
+        <DataTemplate>
+            <ViewCell>
+                <StackLayout Orientation="Horizontal"
+                             Padding="10"
+                             HorizontalOptions="FillAndExpand">
+                    <!-- Task Text -->
+                    <Label Text="{Binding TaskName}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="StartAndExpand"/>
+                    <!-- Checkbox to show completion status -->
+                    <CheckBox IsChecked="{Binding IsCompleted}"
+                              VerticalOptions="Center"
+                              Color="Green"
+                              CheckedChanged="OnCompleteChanged"/>
+                    <!-- Delete Button -->
+                    <Button Text="✕"
+                            BackgroundColor="Transparent"
+                            TextColor="Red"
+                            Command="{Binding DeleteCommand}"
+                            VerticalOptions="Center"/>
+                </StackLayout>
+            </ViewCell>
+        </DataTemplate>
+    </ListView.ItemTemplate>
+</ListView>
+
+
+    <!-- Similar ItemTemplate to the ActiveItemsListView -->
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
